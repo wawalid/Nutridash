@@ -1,10 +1,10 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "../components/Navbar";
 
-function MainLayout({ isLightMode, setIsLightMode }) {
+function MainLayout() {
   return (
     <>
-      <Navbar isLightMode={isLightMode} setIsLightMode={setIsLightMode} />
+      <Navbar />
       <main className="px-4">
         <Outlet />
       </main>

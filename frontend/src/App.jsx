@@ -7,30 +7,21 @@ import HomePage from "./pages/HomePage";
 import TaskPage from "./pages/TaskPage";
 import TaskFormPage from "./pages/TaskFormPage";
 import ProfilePage from "./pages/ProfilePage";
-import React, { useState } from "react";
-import Navbar from "./components/Navbar";
-
+import React from "react";
 
 function App() {
-const [isLightMode, setIsLightMode] = useState(false);
-
-
-
   return (
-    <div className={`min-h-screen ${isLightMode ? '' : 'dark'}`}>
+    <div>
       <AuthProvider>
         <TaskProvider>
           <BrowserRouter>
-       {/* <Navbar isLightMode={isLightMode} setIsLightMode={setIsLightMode} /> */}
             <Routes>
-
-              <Route element={<MainLayout isLightMode={isLightMode} setIsLightMode={setIsLightMode} />}>
+              <Route element={<MainLayout />}>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/tasks" element={<TaskPage />} />
                 <Route path="/add-task" element={<TaskFormPage />} />
-                <Route path="/tasks/:id" element={<TaskFormPage />} />  
+                <Route path="/tasks/:id" element={<TaskFormPage />} />
                 <Route path="/profile" element={<ProfilePage />} />
-
               </Route>
             </Routes>
           </BrowserRouter>
