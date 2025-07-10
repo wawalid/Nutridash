@@ -2,7 +2,10 @@ import { useAuth } from "../context/AuthContext";
 import { Link } from "react-router-dom";
 
 function Navbar() {
-  const { isAuthenticated, logout, user, loading } = useAuth();
+  // const { isAuthenticated, logout, user, loading } = useAuth();
+  const [isLightMode, setIsLightMode] = useState(false);
+
+
 
 
 
@@ -12,6 +15,12 @@ function Navbar() {
         <h1 className="text-2xl font-bold">Nutridash</h1>
       </Link>
       <ul className="flex gap-x-5 text-white">
+        <button
+          onClick={() => setIsLightMode(!isLightMode)}
+          className="text-sm bg-zinc-700 text-white px-4 py-2 rounded"
+        >
+          {isLightMode ? 'Modo oscuro' : 'Modo claro'}
+        </button>
         {/* {isAuthenticated ? (
           <>
 
