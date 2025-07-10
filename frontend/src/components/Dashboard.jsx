@@ -10,21 +10,25 @@ function Dashboard() {
       <Link to={"/"}>
         <h1 className="text-2xl font-bold">Nutridash</h1>
       </Link>
+      </nav>
+      <div>
       <ul className="flex gap-x-5 text-white">
-        <div className="container-columnas">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <p>columna donde ira los macros</p>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <p>columna donde ira las calorias</p>
-            </div>
-        </div>
-        <div className="container-historial bg-white shadow p-4 rounded-xl">
+      <div className="container-columnas">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <p>columna donde ira los macros</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <p>columna donde ira las calorias</p>
+          </div>
+      </div>
+      <div className="container-historial bg-white shadow p-4 rounded-xl">
 
-        </div>
-        
-      </ul>
-    </nav>
+      </div>
+      
+    </ul>
+      </div>
+      
+    
   );
 }
 
