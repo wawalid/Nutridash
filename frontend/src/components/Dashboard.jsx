@@ -111,6 +111,7 @@ function Dashboard() {
       <div className="bg-gray-700 shadow p-4 rounded-xl">
         <h2>Historial de comidas (hoy)</h2>
         <table className="table-auto w-full">
+          <thead>
           <tr>
             <th>Alimento</th>
             <th>Calorías</th>
@@ -119,6 +120,21 @@ function Dashboard() {
             <th>Grasas (g)</th>
             <th>Salud (emoji)</th>
           </tr>
+          </thead>
+          <tbody>
+    {todaysFoods.map((food, index) => (
+      <tr key={index} className="border-t border-gray-600">
+        <td className="py-2">{food.name}</td>
+        <td className="py-2">{food.calories}</td>
+        <td className="py-2">{food.protein}</td>
+        <td className="py-2">{food.carbs}</td>
+        <td className="py-2">{food.fat}</td>
+        {/* <td className="py-2">
+          {food.healthStatus === "healthy" ? "✅" : "⚠️"}
+        </td> */}
+      </tr>
+    ))}
+  </tbody>
         </table>
       </div>
     </main>
