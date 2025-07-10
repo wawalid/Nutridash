@@ -1,17 +1,17 @@
 import { useAuth } from "../context/AuthContext";
 import { Link } from "react-router-dom";
-import React, { useState } from "react";
+
 
 function Navbar() {
   // const { isAuthenticated, logout, user, loading } = useAuth();
-  const [isLightMode, setIsLightMode] = useState(false);
+
 
 
 
 
 
   return (
-    <nav className="bg-zinc-800 my-3 flex justify-between py-5 px-10 rounded-lg">
+    <nav className="bg-zinc-800 my-3 flex justify-between py-5 px-10 rounded-lg dark:bg-white dark:text-black">
       <Link to={"/"}>
         <h1 className="text-2xl font-bold">Nutridash</h1>
       </Link>

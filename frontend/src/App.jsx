@@ -2,17 +2,16 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import { TaskProvider } from "./context/TasksContext";
 
-
-
 import MainLayout from "./layouts/MainLayout";
-
-
 import HomePage from "./pages/HomePage";
 import TaskPage from "./pages/TaskPage";
 import TaskFormPage from "./pages/TaskFormPage";
 import ProfilePage from "./pages/ProfilePage";
+import React, { useState } from "react";
+
 
 var isLightMode = false;
+const [isLightMode, setIsLightMode] = useState(false);
 
 function App() {
   return (
@@ -20,6 +19,7 @@ function App() {
       <AuthProvider>
         <TaskProvider>
           <BrowserRouter>
+       {/* <Navbar isLightMode={isLightMode} setIsLightMode={setIsLightMode} /> */}
             <Routes>
 
               <Route element={<MainLayout />}>
