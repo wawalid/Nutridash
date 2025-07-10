@@ -1,12 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 import { LineChart, PieChart, Pie, Line, Cell, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
+import { fetchFoodData } from "../api/usda"; 
+
 
 // COSAS PARA PONER EN EL FUTURO
 // poner la fecha de hoy de verdad, automaticamente
 
 
 function Dashboard() {
+
+  const [foods, setFoods] = useState([]);
+  const [newFoodName, setNewFoodName] = useState(""); // input controlado
+
+
   // una lista temporal de posibles comidas
   const mockFoods = [
     {
@@ -57,9 +65,9 @@ function Dashboard() {
 
   ];
   // sumatorio de los macros
-  const totalProtein = mockFoods.reduce((sum, f) => sum + f.protein, 0);
-  const totalCarbs = mockFoods.reduce((sum, f) => sum + f.carbs, 0);
-  const totalFat = mockFoods.reduce((sum, f) => sum + f.fat, 0);
+  const totalProtein = foods.reduce((sum, f) => sum + f.protein, 0);
+  const totalCarbs = foods.reduce((sum, f) => sum + f.carbs, 0);
+  const totalFat = foods.reduce((sum, f) => sum + f.fat, 0);
   // objetos que salen en el grafico de pastel
   const pieData = [
     { name: "Proteínas", value: totalProtein },
@@ -69,7 +77,7 @@ function Dashboard() {
   // sumatorio de calorias diarias para ponerlo en un grafico
   const groupedCalories = {};
 
-  mockFoods.forEach(food => {
+  foods.forEach(food => {
     if (!groupedCalories[food.date]) {
       groupedCalories[food.date] = 0;
     }
@@ -81,13 +89,50 @@ function Dashboard() {
     calories,
   }));
   // establecer una fecha inicial para empezar con el historial de comidas
-  const today = "2025-07-09";
-  const todaysFoods = mockFoods.filter(f => f.date === today);
+  const today = new Date().toISOString().split("T")[0];
+  const todaysFoods = foods.filter(f => f.date === today);
+
+
+  async function handleAddFood() {
+    if (!newFoodName.trim()) return;
+
+    const foodData = await fetchFoodData(newFoodName);
+    console.log(foodData);
+    if (foodData) {
+      setFoods((prev) => [...prev, foodData]);
+      setNewFoodName(""); // limpia el input
+    } else {
+      alert("No se encontró ese alimento en la base de datos.");
+    }
+  }
+
+
 
   return (
 
 
     <main className="p-8 space-y-8">
+
+      <div className="bg-gray-800 p-4 rounded-xl">
+        <h2 className="mb-2 text-lg font-bold">Añadir alimento</h2>
+        <div className="flex space-x-2">
+          <input
+            type="text"
+            className="flex-1 p-2 rounded bg-gray-900 text-white border border-gray-600"
+            placeholder="Ej: manzana"
+            value={newFoodName}
+            onChange={(e) => setNewFoodName(e.target.value)}
+          />
+          <button
+            className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded"
+            onClick={handleAddFood}
+          >
+            Añadir
+          </button>
+        </div>
+      </div>
+
+
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="bg-gray-700 shadow p-4 rounded-xl">
           Aquí macros
