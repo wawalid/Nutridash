@@ -115,28 +115,28 @@ function Dashboard() {
         <h2>Historial de comidas (hoy)</h2>
         <table className="table-auto w-full">
           <thead>
-          <tr>
-            <th>Alimento</th>
-            <th>Calorías</th>
-            <th>Proteínas (g)</th>
-            <th>Carbohidratos (g)</th>
-            <th>Grasas (g)</th>
-            <th>Salud (emoji)</th>
-          </tr>
+            <tr>
+              <th>Alimento</th>
+              <th>Calorías</th>
+              <th>Proteínas (g)</th>
+              <th>Carbohidratos (g)</th>
+              <th>Grasas (g)</th>
+              <th>Salud (emoji)</th>
+            </tr>
           </thead>
           <tbody>
-    {todaysFoods.map((food, index) => (
-      <tr key={index} className="border-t border-gray-600">
-        <td className="py-2">{food.name}</td>
-        <td className="py-2">{food.calories}</td>
-        <td className="py-2">{food.protein}</td>
-        <td className="py-2">{food.carbs}</td>
-        <td className="py-2">{food.fat}</td>
-        <td className="py-2">{food.healthStatus === "healthy" ? "💚" : food.healthStatus === "moderate" ? "🟡" : "🔴"}</td>
-      </tr>
-    ))}
-    
-  </tbody>
+            {todaysFoods.map((food, index) => (
+              <tr key={index} className="border-t border-gray-600">
+                <td className="py-2 text-center">{food.name}</td>
+                <td className="py-2 text-center">{food.calories}</td>
+                <td className="py-2 text-center">{food.protein}</td>
+                <td className="py-2 text-center">{food.carbs}</td>
+                <td className="py-2 text-center">{food.fat}</td>
+                <td className="py-2 text-center">{food.healthStatus === "healthy" ? "💚" : food.healthStatus === "moderate" ? "🟡" : "🔴"}</td>
+              </tr>
+            ))}
+
+          </tbody>
         </table>
       </div>
     </main>
