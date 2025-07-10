@@ -2,6 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { LineChart, PieChart, Pie, Line, Cell, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 
+// COSAS PARA PONER EN EL FUTURO
+// poner la fecha de hoy de verdad, automaticamente
+
 
 function Dashboard() {
   // una lista temporal de posibles comidas
@@ -22,7 +25,7 @@ function Dashboard() {
       carbs: 7.9,
       fat: 23.7,
       date: "2025-07-09",
-      healthStatus: "healthy",
+      healthStatus: "unhealthy",
     },
     {
       name: "Mango",
@@ -49,7 +52,7 @@ function Dashboard() {
       carbs: 18,
       fat: 29,
       date: "2025-09-09",
-      healthStatus: "healthy",
+      healthStatus: "moderate",
     }
 
   ];
@@ -129,9 +132,7 @@ function Dashboard() {
         <td className="py-2">{food.protein}</td>
         <td className="py-2">{food.carbs}</td>
         <td className="py-2">{food.fat}</td>
-        {/* <td className="py-2">
-          {food.healthStatus === "healthy" ? "✅" : "⚠️"}
-        </td> */}
+        <td className="py-2">{food.healthStatus === "healthy" ? "💚" : food.healthStatus === "moderate" ? "🟡" : "🔴"}</td>
       </tr>
     ))}
     
