@@ -12,6 +12,7 @@ import TaskPage from "./pages/TaskPage";
 import TaskFormPage from "./pages/TaskFormPage";
 import ProfilePage from "./pages/ProfilePage";
 
+var isLightMode = false;
 
 function App() {
   return (

@@ -1,5 +1,6 @@
 import { useAuth } from "../context/AuthContext";
 import { Link } from "react-router-dom";
+import React, { useState } from "react";
 
 function Navbar() {
   // const { isAuthenticated, logout, user, loading } = useAuth();
