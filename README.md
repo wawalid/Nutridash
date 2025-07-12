@@ -1,24 +1,27 @@
-# Tamarit Affiliator
+# 🥗 NutriTrack Dashboard
 
-# Sistema de Afiliados para Tamarit Motorcycles
+Una app web para registrar y visualizar comidas, obtener sus macronutrientes y calorías, y analizarlas automáticamente por texto o imagen.
 
-Este proyecto es una plataforma interna diseñada para gestionar un sistema de afiliados personalizado para Tamarit Motorcycles. El sistema permite a usuarios registrados generar enlaces de afiliado, rastrear visitas y asignar comisiones automáticamente cuando se confirma una compra.
+## 🚀 Funcionalidades
 
-## Funcionalidades principales
+- Añadir alimentos manualmente por nombre (ej. "manzana").
+- Visualizar macros totales (proteínas, carbohidratos, grasas) en un gráfico de pastel.
+- Ver evolución de calorías diarias en un gráfico de líneas.
+- Subir o tomar una foto de la comida para analizarla con IA.
+- Registro diario de comidas con su estado de salud (💚 🟡 🔴).
 
-- 🧾 Registro e inicio de sesión de afiliados
-- ✅ Verificación manual de usuarios por parte de administradores
-- 🔗 Generación de enlaces con parámetros UTM
-- 📈 Registro de visitas desde enlaces compartidos
-- 🛒 Asociación de pedidos de Shopify mediante coincidencia de IP (en curso...)
-- 💸 Asignación de comisiones a afiliados por cada venta válida (proximamente...)
-- 🔐 Panel de administración para control de usuarios y estado
+## 🛠️ Tecnologías
 
-## Tecnologías utilizadas
+- **Frontend:** React + Tailwind CSS + Recharts
+- **API nutricional:** FoodData Central (USDA)
+- **Análisis por imagen (opcional):** Gemini API de Google
 
-- **Frontend**: React + Tailwind CSS + React Router
-- **Backend**: Node.js + Express + JWT
-- **Base de datos**: MongoDB (Mongoose)
-- **Integración externa**: CMS privado de Tamarit y API de Shopify
-- **Tracking**: Logs del servidor con parámetros UTM, IP, timestamps, correos.
+## 📦 Instalación
 
+```bash
+npm install
+npm run dev
+
+
+
+// COSAS PARA PONER EN EL FUTURO

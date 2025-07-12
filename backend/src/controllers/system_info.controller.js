@@ -36,3 +36,4 @@ export const getSystemInfo = async (req, res) => {
 };
 
 // Hola guapo tienes novia? 
+console.log("si, y es preciosa la amo :)");
