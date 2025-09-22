@@ -10,6 +10,7 @@ import {
 import { getUsersRequest,getUserByIdRequest, updateVerifiedUserRequest } from "../api/users";
 import { matchRequest } from "../api/admin";
 import { getSystemInfoRequest } from "../api/system_info";
+import { analyzeMealRequest } from "../api/gemini";
 
 
 export const AuthContext = createContext();
@@ -135,6 +136,22 @@ export const AuthProvider = ({ children }) => {
   };
 
 
+  const analyzeMeal = async (mealData) => {
+    try {
+      const res = await analyzeMealRequest(mealData);
+      console.log("Análisis de la comida:", res.data);
+      return res.data;
+    } catch (error) {
+      console.error("Error al analizar la comida:", error);
+      throw error;
+    }
+  };
+
+
+
+
+
+
 
 
   // Borrar los mensajes de error y éxito después de 5 segundos
@@ -192,6 +209,7 @@ export const AuthProvider = ({ children }) => {
         toggleVerificado,
         match,
         getSystemInfo,
+        analyzeMeal,
         loading,
         user,
         affiliateUser,

@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { useAuth } from "../context/AuthContext";
 import {
   PieChart, Pie, Tooltip,
   LineChart, Line, XAxis, YAxis, CartesianGrid, ResponsiveContainer
 } from "recharts";
 
 function Dashboard() {
+  const { analyzeMeal } = useAuth();
   const [foods, setFoods] = useState([]);
 
   const totalProtein = foods.reduce((sum, f) => sum + f.protein, 0);
@@ -34,46 +36,33 @@ function Dashboard() {
     const file = e.target.files[0];
     if (!file) return;
 
-    const formData = new FormData();
-    formData.append("image", file);
+    // Convertimos a Base64
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = async () => {
+      const base64Data = reader.result.split(",")[1]; // Quitamos "data:image/xxx;base64,"
 
-    try {
-      // Enviar imagen al backend o usar fetch directamente con Gemini
-      const uploadedFile = await uploadToGemini(file);
-      const prompt = `Analiza esta imagen de comida y devuélveme un JSON con la siguiente estructura:
-{
-  "name": "",
-  "calories": 0,
-  "protein": 0,
-  "carbs": 0,
-  "fat": 0
-}
-Sé lo más preciso posible en estimar los valores nutricionales del plato, como si fueras un nutricionista profesional.`
+      try {
+        const resultado_gemini = await analyzeMeal({
+          imageBase64: base64Data,
+          mimeType: file.type
+        });
+        console.log("Respuesta de Gemini:", resultado_gemini);
 
-      const result = await sendToGemini(uploadedFile, prompt);
+        if (resultado_gemini?.name) {
+          setFoods(prev => [...prev, { ...resultado_gemini, date: today }]);
+        }
 
-      console.log("Respuesta de Gemini:");
-      console.log(result);
-
-      if (result?.name) {
-        setFoods((prev) => [
-          ...prev,
-          {
-            ...result,
-            date: today,
-          },
-        ]);
+      } catch (error) {
+        console.error("Error al analizar la imagen:", error);
       }
-
-    } catch (error) {
-      console.error("Error al analizar la imagen:", error);
-    }
+    };
   }
 
   return (
     <main className="p-8 space-y-8">
-      <h1 className="text-2xl font-bold">Dashboard Nutricional</h1>
-
+      <h1 className="text-2xl font-bold">Dashboard Erika y Walid</h1>
+      <p className="text-gray-400">Bienvenido al panel de control. Aquí puedes analizar tus comidas y ver tus estadísticas nutricionales.</p>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="bg-gray-700 shadow p-4 rounded-xl">
           <h2>Distribución de Macronutrientes</h2>
