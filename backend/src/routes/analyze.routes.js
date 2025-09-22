@@ -32,6 +32,7 @@ router.post("/analyze", async (req, res) => {
   "fat": número (en gramos)
 }
 Sé preciso como un nutricionista profesional. No des explicaciones, solo responde con un JSON válido.` }
+
       ]
     });
 
